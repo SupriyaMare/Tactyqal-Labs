@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Blog studio | Tactyqal Labs</title>
+  <link rel="stylesheet" href="/public/admin.css">
+  <script src="/public/admin.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Tactyqal blog studio home">Tactyqal <span>LABS</span></a>
+    <span class="topbar-note">BLOG STUDIO <i></i> LOCAL CMS</span>
+  </header>
+
+  <main class="layout">
+    <section class="intro">
+      <p class="eyebrow">A quieter way to publish</p>
+      <h1>Ideas worth sharing,<br><em>well looked after.</em></h1>
+      <p class="intro-copy">Create, edit and publish founder stories, startup advice and product lessons. Drafts stay private until you choose to publish.</p>
+    </section>
+
+    <section class="workspace" aria-label="Blog post manager">
+      <aside class="post-list-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">YOUR LIBRARY</p>
+            <h2>Posts <span id="post-count">—</span></h2>
+          </div>
+          <button class="icon-button" id="new-post" type="button" aria-label="Create a new post">+</button>
+        </div>
+        <div class="auth-panel">
+          <label for="admin-token">Admin bearer token</label>
+          <div class="auth-row">
+            <input id="admin-token" type="password" autocomplete="off" placeholder="Paste token from the server terminal">
+            <button id="connect" class="button button-small" type="button">Connect</button>
+          </div>
+          <p>Stored in this tab only. The API is limited to this computer by default.</p>
+        </div>
+        <div class="post-list" id="post-list" aria-live="polite">
+          <p class="empty-note">Connect with your admin token to load your posts.</p>
+        </div>
+      </aside>
+
+      <section class="editor-panel" aria-label="Post editor">
+        <div class="editor-heading">
+          <div>
+            <p class="eyebrow" id="editor-kicker">NEW STORY</p>
+            <h2 id="editor-title">Start with a good idea.</h2>
+          </div>
+          <span class="status-badge" id="editor-status">NOT SAVED</span>
+        </div>
+        <form id="post-form">
+          <label for="title">Post title
+            <input id="title" name="title" maxlength="180" required placeholder="A clear, thoughtful headline">
+          </label>
+          <div class="field-grid">
+            <label for="slug">URL slug
+              <input id="slug" name="slug" maxlength="180" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" required placeholder="a-clear-headline">
+            </label>
+            <label for="author">Author
+              <input id="author" name="authorName" maxlength="120" value="Tactyqal Labs" required>
+            </label>
+          </div>
+          <label for="excerpt">Short summary
+            <textarea id="excerpt" name="excerpt" maxlength="500" rows="2" placeholder="A sentence readers can scan before opening the article"></textarea>
+          </label>
+          <label for="content">Article content
+            <textarea id="content" name="content" maxlength="100000" rows="12" placeholder="Write the article here. Use plain text or Markdown."></textarea>
+          </label>
+          <label for="cover">Cover image URL <span class="optional">(optional)</span>
+            <input id="cover" name="coverImageUrl" type="url" maxlength="2048" placeholder="https://example.com/cover.jpg">
+          </label>
+          <fieldset>
+            <legend>Categories</legend>
+            <div class="category-options" id="category-options"><span class="optional">Connect to load categories.</span></div>
+          </fieldset>
+          <label for="status">Publication status
+            <select id="status" name="status">
+              <option value="draft">Draft — private</option>
+              <option value="published">Published — public</option>
+            </select>
+          </label>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+          <div class="form-actions">
+            <button class="button" id="save-post" type="submit">Save draft</button>
+            <button class="button button-danger" id="delete-post" type="button" hidden>Delete post</button>
+          </div>
+        </form>
+      </section>
+    </section>
+    <p class="privacy-note">This editing demo is local-first. The token grants full post access; don’t expose it or deploy this server publicly without production authentication, HTTPS and a configured secret.</p>
+  </main>
+</body>
+</html>
